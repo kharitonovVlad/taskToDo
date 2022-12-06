@@ -1,4 +1,6 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/style.scss';
+import 'bootstrap';
 import initView from './scripts/modules/init-view';
 import { taskService } from './scripts/modules/services/task-service';
 
