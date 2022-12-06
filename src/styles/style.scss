@@ -1,0 +1,173 @@
+html {
+  font-family: 'Arial', sans-serif;
+}
+
+body,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+
+  .menu {
+    width: 350px;
+    border-right: 1px solid #000000;
+
+    .tasks-list {
+      list-style: none;
+
+      .create-task {
+        display: flex;
+        height: 39px;
+        justify-content: space-between;
+        border-bottom: 1px solid #000000;
+
+        .create-task-input {
+          border: none;
+          border-right: 1px solid #000000;
+          font-size: 16px;
+          width: 80%;
+        }
+
+        .create-task-button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #efefef;
+          }
+        }
+      }
+
+      .tasks-list--name {
+        padding: 10px 20px;
+        border-bottom: 1px solid #000000;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #c8ffcd;
+        }
+
+        &.active {
+          background-color: #93ff9d;
+        }
+      }
+    }
+  }
+
+  .content {
+    margin-left: 30px;
+    width: 70%;
+    margin-top: 10px;
+
+    .task {
+      .task-info-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        .task--hours {
+          border-radius: 5px;
+          border: 1px solid #000000;
+          padding: 3px;
+          width: 2%;
+        }
+
+        .task-actions-container {
+          display: flex;
+          gap: 5px;
+        }
+
+        .task-name {
+          margin: 0;
+          display: inline-block;
+          width: 100%;
+          font-size: 20px;
+        }
+      }
+
+      .task-description {
+        width: 100%;
+      }
+
+      .create-sub-input {
+        margin-right: 10px;
+        height: 22px;
+        border: 1px solid #000000;
+        border-radius: 3px;
+      }
+
+      .create-sub-button {
+        background: transparent;
+        border: 1px solid #000000;
+        border-radius: 3px;
+        padding: 5px;
+        margin-bottom: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #efefef;
+        }
+      }
+
+      .sub-tasks-list {
+        list-style: none;
+
+        .sub-task-item {
+          .main-sub-task-container {
+            padding: 10px 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            .sub-task--hours {
+              border-radius: 5px;
+              border: 1px solid #000000;
+              padding: 3px;
+              width: 2%;
+            }
+
+            .sub-task {
+              width: 100%;
+            }
+
+            .sub-task-actions-container {
+              display: flex;
+              gap: 5px;
+            }
+          }
+
+          .sub-task-description {
+            width: 100%;
+          }
+        }
+      }
+
+      .action-button {
+        background: transparent;
+        border-radius: 3px;
+        padding: 5px;
+        cursor: pointer;
+      }
+
+      .remove-sub-task-button {
+        border: 1px solid red;
+        color: red;
+      }
+
+      .update-sub-task-button {
+        border: 1px solid #ffc100;
+        color: #ffc100;
+      }
+
+      .done-sub-task-button {
+        border: 1px solid green;
+        color: green;
+      }
+    }
+  }
+}
