@@ -41,7 +41,14 @@
       </section>
       <section class="content">
         <h2>Задача</h2>
-        <div class="section-container">
+        <div class="section-container position-relative">
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >
+            В процессе
+            <span class="visually-hidden">Статус</span>
+          </span>
+
           <div class="input-group task-name">
             <button class="btn btn-outline-danger remove-button" type="button">
               <i class="bi bi-x"></i>
@@ -67,12 +74,16 @@
               />
               <label for="hoursInput">Время</label>
             </div>
-            <input
-              type="text"
-              class="form-control"
-              value="Замена иконок"
-              aria-label="Имя задачи"
-            />
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="subNameInput"
+                placeholder="Имя задачи"
+                value="Замена иконок"
+              />
+              <label for="subNameInput">Имя задачи</label>
+            </div>
             <button class="btn btn-outline-success done" type="button">
               <i class="bi bi-check2"></i>
             </button>
@@ -109,7 +120,14 @@
 
         <h3>Подзадачи</h3>
 
-        <div class="section-container">
+        <div class="section-container position-relative">
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >
+            В процессе
+            <span class="visually-hidden">Статус</span>
+          </span>
+
           <div class="input-group sub-name">
             <button class="btn btn-outline-danger remove-button" type="button">
               <i class="bi bi-x"></i>
@@ -162,9 +180,20 @@
           </div>
         </div>
 
-        <div class="section-container">
+        <div class="section-container position-relative">
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-success"
+          >
+            Готово
+            <span class="visually-hidden">Статус</span>
+          </span>
+
           <div class="input-group sub-name">
-            <button class="btn btn-outline-danger remove-button" type="button">
+            <button
+              class="btn btn-outline-danger remove-button"
+              type="button"
+              disabled
+            >
               <i class="bi bi-x"></i>
             </button>
             <button
@@ -184,6 +213,7 @@
                 id="hoursInput2"
                 placeholder="ч"
                 value="3"
+                disabled
               />
               <label for="hoursInput2">Время</label>
             </div>
@@ -198,7 +228,7 @@
               <label for="subNameInput2">Имя подзадачи</label>
             </div>
             <button class="btn btn-outline-success done" type="button">
-              <i class="bi bi-check2"></i>
+              <i class="bi bi-arrow-counterclockwise"></i>
             </button>
           </div>
           <div class="description">
@@ -213,7 +243,14 @@
           </div>
         </div>
 
-        <div class="section-container">
+        <div class="section-container position-relative">
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >
+            В процессе
+            <span class="visually-hidden">Статус</span>
+          </span>
+
           <div class="input-group sub-name">
             <button class="btn btn-outline-danger remove-button" type="button">
               <i class="bi bi-x"></i>
@@ -264,7 +301,14 @@
           </div>
         </div>
 
-        <div class="section-container">
+        <div class="section-container position-relative">
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge bg-primary"
+          >
+            В процессе
+            <span class="visually-hidden">Статус</span>
+          </span>
+
           <div class="input-group sub-name">
             <button class="btn btn-outline-danger remove-button" type="button">
               <i class="bi bi-x"></i>
