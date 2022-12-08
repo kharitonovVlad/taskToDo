@@ -5,14 +5,21 @@ html {
 }
 
 body,
-ul {
+ul,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   padding: 0;
 }
 
 .app-container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 
   .form-control:focus {
     box-shadow: none;
@@ -88,7 +95,7 @@ ul {
 
   .content {
     margin-left: 30px;
-    width: 70%;
+    width: 75%;
     margin-top: 10px;
 
     i {
@@ -96,13 +103,33 @@ ul {
     }
 
     .done {
+      width: 3%;
       padding: 0 5px;
     }
 
-    .hours-input {
-      width: 37px;
+    .hours {
+      width: 10%;
       flex: none;
-      padding: 6px 5px;
+    }
+
+    .section-container {
+      padding: 24px 20px 12px;
+      margin: 24px 0;
+      background: #fafafa;
+      border-radius: 8px;
+
+      .sub-name,
+      .task-name {
+        margin-bottom: 12px;
+      }
+
+      .description {
+        margin: 0;
+
+        .collapse {
+          margin-top: 12px;
+        }
+      }
     }
 
     .hours-badge {
@@ -111,21 +138,18 @@ ul {
       border-bottom: 1px solid rgb(206, 212, 218);
     }
 
-    .description {
-      margin: 1rem 0;
-    }
-
     .badge {
       display: flex;
       align-items: center;
     }
 
     .remove-button {
+      width: 3%;
       padding: 0 2px;
     }
 
     .create-sub {
-      margin-bottom: 1rem;
+      margin: 12px 0;
 
       .create-button {
         padding: 0 5px;
