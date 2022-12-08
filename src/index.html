@@ -3,12 +3,276 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Менеджер задач</title>
   </head>
   <body>
     <div class="app-container">
-      <section class="menu"></section>
-      <section class="content"></section>
+      <section class="menu">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Имя задачи"
+            aria-label="Имя задачи"
+          />
+          <button class="btn btn-outline-secondary" type="button">
+            Добавить
+          </button>
+        </div>
+        <div class="list-group">
+          <button
+            type="button"
+            class="list-group-item list-group-item-action active"
+            aria-current="true"
+          >
+            Замена иконок
+            <span class="badge rounded-pill text-bg-light">6</span>
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            Хлебные крошки
+            <span class="badge rounded-pill text-bg-primary">4</span>
+          </button>
+          <button type="button" class="list-group-item list-group-item-action">
+            Сведения для заполнения контракта
+            <span class="badge rounded-pill text-bg-primary">20</span>
+          </button>
+        </div>
+      </section>
+      <section class="content">
+        <div class="input-group">
+          <button class="btn btn-outline-danger remove-button" type="button">
+            <i class="bi bi-x"></i>
+          </button>
+          <span class="badge hours-badge">6</span>
+          <input
+            type="text"
+            class="form-control"
+            value="Замена иконок"
+            aria-label="Имя задачи"
+          />
+          <button class="btn btn-outline-success done" type="button">
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+
+        <div class="description">
+          <p>
+            <button
+              class="btn btn-outline-info collapse-description-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              Описание
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <textarea
+              class="form-control"
+              placeholder="Описание задачи"
+              aria-label="Описание задачи"
+              style="height: 65px"
+            >
+Замена иконок преференций в ЛК заказчика</textarea
+            >
+          </div>
+        </div>
+
+        <div class="input-group create-sub">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Имя подзадачи"
+            aria-label="Имя подзадачи"
+          />
+          <button class="btn btn-outline-success create-button" type="button">
+            <i class="bi bi-plus"></i>
+          </button>
+        </div>
+
+        <h3>Подзадачи</h3>
+
+        <div class="input-group">
+          <button class="btn btn-outline-danger remove-button" type="button">
+            <i class="bi bi-x"></i>
+          </button>
+          <input
+            type="text"
+            class="form-control hours-input"
+            placeholder="ч"
+            value="1"
+            aria-label="ч"
+          />
+          <input
+            type="text"
+            class="form-control"
+            value="Замена иконок в Мои контракты"
+            aria-label="Имя подзадачи"
+          />
+          <button class="btn btn-outline-success done" type="button">
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+        <div class="description">
+          <p>
+            <button
+              class="btn btn-outline-info collapse-description-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSub1"
+              aria-expanded="false"
+              aria-controls="collapseSub1"
+            >
+              Описание
+            </button>
+          </p>
+          <div class="collapse" id="collapseSub1">
+            <textarea
+              class="form-control"
+              placeholder="Описание подзадачи"
+              aria-label="Описание подзадачи"
+              style="height: 65px"
+            >
+Страница реестра контрактов</textarea
+            >
+          </div>
+        </div>
+
+        <div class="input-group">
+          <button class="btn btn-outline-danger remove-button" type="button">
+            <i class="bi bi-x"></i>
+          </button>
+          <input
+            type="text"
+            class="form-control hours-input"
+            placeholder="ч"
+            value="3"
+            aria-label="ч"
+          />
+          <input
+            type="text"
+            class="form-control"
+            value="Замена иконок в извещении"
+            aria-label="Имя подзадачи"
+          />
+          <button class="btn btn-outline-success done" type="button">
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+        <div class="description">
+          <p>
+            <button
+              class="btn btn-outline-info collapse-description-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSub2"
+              aria-expanded="false"
+              aria-controls="collapseSub2"
+            >
+              Описание
+            </button>
+          </p>
+          <div class="collapse" id="collapseSub2">
+            <textarea
+              class="form-control"
+              placeholder="Описание подзадачи"
+              aria-label="Описание подзадачи"
+              style="height: 65px"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <button class="btn btn-outline-danger remove-button" type="button">
+            <i class="bi bi-x"></i>
+          </button>
+          <input
+            type="text"
+            class="form-control hours-input"
+            placeholder="ч"
+            value="3"
+            aria-label="ч"
+          />
+          <input
+            type="text"
+            class="form-control"
+            value="Замена иконок в протоколах"
+            aria-label="Имя подзадачи"
+          />
+          <button class="btn btn-outline-success done" type="button">
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+        <div class="description">
+          <p>
+            <button
+              class="btn btn-outline-info collapse-description-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSub3"
+              aria-expanded="false"
+              aria-controls="collapseSub3"
+            >
+              Описание
+            </button>
+          </p>
+          <div class="collapse" id="collapseSub3">
+            <textarea
+              class="form-control"
+              placeholder="Описание подзадачи"
+              aria-label="Описание подзадачи"
+              style="height: 65px"
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <button class="btn btn-outline-danger remove-button" type="button">
+            <i class="bi bi-x"></i>
+          </button>
+          <input
+            type="text"
+            class="form-control hours-input"
+            placeholder="ч"
+            value="2"
+            aria-label="ч"
+          />
+          <input
+            type="text"
+            class="form-control"
+            value="Форс мажоры"
+            aria-label="Имя подзадачи"
+          />
+          <button class="btn btn-outline-success done" type="button">
+            <i class="bi bi-check2"></i>
+          </button>
+        </div>
+        <div class="description">
+          <p>
+            <button
+              class="btn btn-outline-info collapse-description-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSub4"
+              aria-expanded="false"
+              aria-controls="collapseSub4"
+            >
+              Описание
+            </button>
+          </p>
+          <div class="collapse" id="collapseSub4">
+            <textarea
+              class="form-control"
+              placeholder="Описание подзадачи"
+              aria-label="Описание подзадачи"
+              style="height: 65px"
+            ></textarea>
+          </div>
+        </div>
+      </section>
     </div>
   </body>
 </html>

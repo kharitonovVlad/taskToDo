@@ -1,3 +1,5 @@
+@import '~bootstrap/scss/bootstrap';
+
 html {
   font-family: 'Arial', sans-serif;
 }
@@ -12,9 +14,34 @@ ul {
   display: flex;
   height: 100vh;
 
+  .form-control:focus {
+    box-shadow: none;
+  }
+
   .menu {
     width: 350px;
-    border-right: 1px solid #000000;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+
+    .input-group {
+      .form-control {
+        border: 0;
+        border-right: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      button {
+        border: 0;
+        border-radius: 0;
+      }
+    }
+
+    .list-group-item {
+      border-radius: 0;
+      border-right: 0;
+
+      .badge {
+        float: right;
+      }
+    }
 
     .tasks-list {
       list-style: none;
@@ -63,6 +90,47 @@ ul {
     margin-left: 30px;
     width: 70%;
     margin-top: 10px;
+
+    i {
+      font-size: 21px;
+    }
+
+    .done {
+      padding: 0 5px;
+    }
+
+    .hours-input {
+      width: 37px;
+      flex: none;
+      padding: 6px 5px;
+    }
+
+    .hours-badge {
+      color: #212529;
+      border-top: 1px solid rgb(206, 212, 218);
+      border-bottom: 1px solid rgb(206, 212, 218);
+    }
+
+    .description {
+      margin: 1rem 0;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+    }
+
+    .remove-button {
+      padding: 0 2px;
+    }
+
+    .create-sub {
+      margin-bottom: 1rem;
+
+      .create-button {
+        padding: 0 5px;
+      }
+    }
 
     .task {
       .task-info-container {

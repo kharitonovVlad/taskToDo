@@ -42,13 +42,14 @@ module.exports = {
     open: true,
     hot: isDev,
   },
-  devtool: isDev ? 'source-map' : '',
+  devtool: isDev ? 'source-map' : false,
   plugins: [
     new HTMLWebPackPlugin({
       template: './index.html',
       minify: {
         collapseWhitespace: isProd,
       },
+      favicon: './assets/favicon.ico',
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
@@ -65,6 +66,36 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        test: /\.(ttf | woff | woff2 | eot)$/,
+        include: path.resolve(
+          __dirname,
+          './node_modules/bootstrap-icons/font/fonts'
+        ),
+        use: ['file-loader'],
+      },
+      // {
+      //   test: /\.(scss)$/,
+      //   use: [
+      //     {
+      //       loader: 'style-loader',
+      //     },
+      //     {
+      //       loader: 'css-loader',
+      //     },
+      //     {
+      //       loader: 'postcss-loader',
+      //       options: {
+      //         postcssOptions: {
+      //           plugins: () => [require('autoprefixer')],
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: 'sass-loader',
+      //     },
+      //   ],
+      // },
       {
         test: /\.s[ca]ss$/,
         use: [
