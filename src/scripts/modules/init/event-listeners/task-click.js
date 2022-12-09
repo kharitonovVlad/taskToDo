@@ -1,3 +1,5 @@
+import initTaskView from '../task-view';
+
 function setActive(index) {
   const taskItem = document.querySelector(`#taskItem-${index}`);
   const taskList = document.querySelector('#taskList');
@@ -10,6 +12,7 @@ function setActive(index) {
 
 function onTaskClick(index) {
   setActive(index);
+  initTaskView(index);
 }
 
 export default onTaskClick;

@@ -12,6 +12,12 @@ class Task {
   }
 
   setDone(isDone) {
+    if (isDone) {
+      this.subTasks.forEach((subTask) => {
+        subTask.setDone(isDone);
+      });
+    }
+
     this.done = isDone;
   }
 

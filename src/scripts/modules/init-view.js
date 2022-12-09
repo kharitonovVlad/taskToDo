@@ -1,17 +1,17 @@
 import initTaskList from './init/task-list';
-// import initTaskView from './init/task-view';
+import initTaskView from './init/task-view';
+import { taskService } from './services/task-service';
 
-function initView(tasks, activeTaskIndex) {
-  const menu = document.querySelector('.menu');
-  // const content = document.querySelector('.content');
+function initView() {
+  const tasks = taskService.getTasks();
 
-  initTaskList(tasks, menu, activeTaskIndex);
+  initTaskList(tasks);
 
-  // tasks.forEach((task, index) => {
-  //   if (index === activeTaskIndex) {
-  //     initTaskView(tasks[index], content, tasks, index);
-  //   }
-  // });
+  tasks.forEach((task, index) => {
+    if (index === 0) {
+      initTaskView(index);
+    }
+  });
 }
 
 export default initView;

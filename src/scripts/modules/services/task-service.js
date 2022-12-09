@@ -60,4 +60,17 @@ export const taskService = {
     tasks.unshift(newTask);
     taskService.saveTasks();
   },
+  getTask: (taskIndex) => {
+    return tasks[taskIndex];
+  },
+  removeTask: (taskIndex) => {
+    tasks = tasks.filter((task, index) => {
+      return index !== taskIndex;
+    });
+    taskService.saveTasks();
+  },
+  updateTask: (index, task) => {
+    tasks[index] = task;
+    taskService.saveTasks();
+  },
 };

@@ -2,23 +2,25 @@ import createTask from './event-listeners/create-task';
 import { idService } from '../services/id-service';
 import { clickListenersService } from '../services/click-listeners-service';
 
-function initTaskList(tasks, menu) {
+function initTaskList(tasks) {
+  const menu = document.querySelector('.menu');
+
   menu.innerHTML = '';
 
   menu.insertAdjacentHTML(
     'afterbegin',
     `<div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Имя задачи"
-            aria-label="Имя задачи"
-            id="createTaskInput"
-          />
-          <button class="btn btn-outline-secondary" type="button" id="createTaskButton">
-            Добавить
-          </button>
-        </div>`
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Имя задачи"
+              aria-label="Имя задачи"
+              id="createTaskInput"
+            />
+            <button class="btn btn-outline-secondary" type="button" id="createTaskButton">
+              Добавить
+            </button>
+          </div>`
   );
 
   document
@@ -41,7 +43,7 @@ function initTaskList(tasks, menu) {
       >
         ${task.title}
         <span class='badge rounded-pill text-bg-light'>${task.time}</span>
-       </button>
+      </button>
     `);
   });
 
