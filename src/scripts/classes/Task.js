@@ -2,7 +2,7 @@ class Task {
   constructor(title, subTasks, time, done, desc) {
     this.title = title;
     this.subTasks = subTasks ? subTasks : [];
-    this.time = time ? time : null;
+    this.time = time ? time : 0;
     this.done = done ? done : false;
     this.description = desc ? desc : '';
   }

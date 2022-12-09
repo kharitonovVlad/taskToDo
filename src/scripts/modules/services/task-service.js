@@ -3,9 +3,10 @@ import SubTask from '../../classes/SubTask';
 
 const connectionString = 'tasks';
 
+let tasks = [];
+
 export const taskService = {
   getTasks: () => {
-    let tasks = [];
     tasks = JSON.parse(localStorage.getItem(connectionString));
 
     if (tasks.length) {
@@ -52,7 +53,11 @@ export const taskService = {
 
     return tasks;
   },
-  saveTasks: (tasks) => {
+  saveTasks: () => {
     localStorage.setItem(connectionString, JSON.stringify(tasks));
+  },
+  addTask: (newTask) => {
+    tasks.unshift(newTask);
+    taskService.saveTasks();
   },
 };

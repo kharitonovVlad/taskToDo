@@ -1,56 +1,59 @@
-import initView from '../init-view';
-import Task from '../../classes/Task';
+import createTask from './event-listeners/create-task';
+import { idService } from '../services/id-service';
+import { clickListenersService } from '../services/click-listeners-service';
 
-function initTaskList(tasks, menu, activeTaskIndex) {
+function initTaskList(tasks, menu) {
   menu.innerHTML = '';
-  const tasksList = document.createElement('ul');
-  tasksList.classList.add('tasks-list');
-  menu.appendChild(tasksList);
 
-  const createTaskRow = document.createElement('li');
-  createTaskRow.classList.add('create-task');
+  menu.insertAdjacentHTML(
+    'afterbegin',
+    `<div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Имя задачи"
+            aria-label="Имя задачи"
+            id="createTaskInput"
+          />
+          <button class="btn btn-outline-secondary" type="button" id="createTaskButton">
+            Добавить
+          </button>
+        </div>`
+  );
 
-  const createTaskInput = document.createElement('input');
-  createTaskInput.classList.add('create-task-input');
+  document
+    .querySelector('#createTaskButton')
+    .addEventListener('click', createTask);
 
-  const createTaskButton = document.createElement('button');
-  createTaskButton.innerText = 'Добавить';
-  createTaskButton.classList.add('create-task-button');
-  createTaskButton.id = 'create-task-btn';
-
-  createTaskRow.appendChild(createTaskInput);
-  createTaskRow.appendChild(createTaskButton);
-
-  tasksList.appendChild(createTaskRow);
-
-  createTaskButton.addEventListener('click', () => {
-    if (createTaskInput.value) {
-      const newTask = new Task(createTaskInput.value);
-      tasks.unshift(newTask);
-
-      initView(tasks, 0);
-    }
-  });
+  const tasksList = [];
 
   tasks.forEach((task, index) => {
     task.time = task.subTasks.reduce((sum, current) => {
-      return sum + current.time;
+      return current.done ? sum : sum + +current.time;
     }, 0);
 
-    const newTask = document.createElement('li');
-    newTask.classList.add('tasks-list--name');
-
-    newTask.addEventListener('click', () => {
-      initView(tasks, index);
-    });
-
-    if (index === activeTaskIndex) {
-      newTask.classList.add('active');
-    }
-
-    newTask.innerText = task.title;
-    tasksList.appendChild(newTask);
+    tasksList.push(`
+      <button
+        type='button'
+        class='list-group-item list-group-item-action ${
+          index === 0 ? 'active' : ''
+        }'
+      >
+        ${task.title}
+        <span class='badge rounded-pill text-bg-light'>${task.time}</span>
+       </button>
+    `);
   });
+
+  menu.insertAdjacentHTML(
+    'beforeend',
+    `<div class="list-group" id="taskList">
+          ${tasksList.join('')}
+        </div>`
+  );
+
+  idService.setForTasks();
+  clickListenersService.setForTasks();
 }
 
 export default initTaskList;
