@@ -2,14 +2,8 @@ import createTask from './event-listeners/create-task';
 import { idService } from '../services/id-service';
 import { clickListenersService } from '../services/click-listeners-service';
 
-function initTaskList(tasks, currentIndex) {
-  const menu = document.querySelector('.menu');
-
-  menu.innerHTML = '';
-
-  menu.insertAdjacentHTML(
-    'afterbegin',
-    `<div class="input-group">
+function getCreateTaskTemplate() {
+  return `<div class="input-group">
             <input
               type="text"
               class="form-control"
@@ -20,21 +14,11 @@ function initTaskList(tasks, currentIndex) {
             <button class="btn btn-outline-secondary" type="button" id="createTaskButton">
               Добавить
             </button>
-          </div>`
-  );
+          </div>`;
+}
 
-  document
-    .querySelector('#createTaskButton')
-    .addEventListener('click', createTask);
-
-  const tasksList = [];
-
-  tasks.forEach((task, index) => {
-    task.time = task.subTasks.reduce((sum, current) => {
-      return current.done ? sum : sum + +current.time;
-    }, 0);
-
-    tasksList.push(`
+function getTaskItemTemplate(task, index, currentIndex) {
+  return `
       <button
         type='button'
         class='list-group-item list-group-item-action ${
@@ -44,15 +28,33 @@ function initTaskList(tasks, currentIndex) {
         ${task.title}
         <span class='badge rounded-pill text-bg-light'>${task.time}</span>
       </button>
-    `);
+    `;
+}
+
+function initTaskList(tasks, currentIndex) {
+  const menu = document.querySelector('.menu');
+  const tasksList = [];
+
+  menu.innerHTML = '';
+
+  tasks.forEach((task, index) => {
+    task.time = task.subTasks.reduce((sum, current) => {
+      return current.done ? sum : sum + +current.time;
+    }, 0);
+    tasksList.push(getTaskItemTemplate(task, index, currentIndex));
   });
 
+  menu.insertAdjacentHTML('afterbegin', getCreateTaskTemplate());
   menu.insertAdjacentHTML(
     'beforeend',
     `<div class="list-group" id="taskList">
           ${tasksList.join('')}
         </div>`
   );
+
+  document
+    .querySelector('#createTaskButton')
+    .addEventListener('click', createTask);
 
   idService.setForTasks();
   clickListenersService.setForTasks();
