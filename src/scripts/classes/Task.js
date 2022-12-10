@@ -25,14 +25,6 @@ class Task {
     this.description = desc;
   }
 
-  addSubTask(subTask) {
-    this.subTasks.push(subTask);
-  }
-
-  removeSubTask(subTask) {
-    this.subTasks = this.subTasks.filter((sub) => sub.title !== subTask.title);
-  }
-
   setTime(time) {
     this.time = time;
   }
