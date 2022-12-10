@@ -19,17 +19,6 @@ class SubTask {
   }
 
   setTime(time) {
-    if (time) {
-      const indexOfSlice = time.indexOf('ч');
-      if (indexOfSlice !== 0) {
-        time =
-          indexOfSlice !== -1 ? time.slice(0, indexOfSlice) : time.slice(0);
-      } else {
-        time = 0;
-      }
-    } else {
-      time = 0;
-    }
     this.time = time;
   }
 }

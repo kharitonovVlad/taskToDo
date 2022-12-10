@@ -76,4 +76,8 @@ export const taskService = {
   getSubTasks: (index) => {
     return tasks[index].subTasks;
   },
+  updateSubTasks: (index, subTasks) => {
+    tasks[index].subTasks = subTasks;
+    taskService.saveTasks();
+  },
 };
