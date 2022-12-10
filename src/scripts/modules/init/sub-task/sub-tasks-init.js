@@ -1,8 +1,10 @@
 import { subTaskService } from '../../services/sub-task-service';
 import { subTaskListeners } from '../event-listeners/sub-task-listeners';
+import { taskService } from '../../services/task-service';
 
 function subTasksInit(index = null) {
   const subTasks = subTaskService.getSubTasks(index);
+  const currentTask = taskService.getTask(subTaskService.getCurrentTaskIndex());
   const subTasksContainer = document.querySelector('#subTasksContainer');
   subTasksContainer.innerHTML = '';
   const subTaskList = [];
@@ -55,7 +57,9 @@ function subTasksInit(index = null) {
                 />
                 <label for="subNameInput-${index}">Имя подзадачи</label>
               </div>
-              <button class="btn btn-outline-success done" type="button" id="doneSubTaskButton-${index}">
+              <button class="btn btn-outline-success done" type="button" id="doneSubTaskButton-${index}" ${
+      currentTask.done ? 'disabled' : ''
+    }>
                 <i class="bi bi-${
                   !subTask.done ? 'check2' : 'arrow-counterclockwise'
                 }"></i>

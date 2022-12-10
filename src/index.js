@@ -4,4 +4,4 @@ import './styles/style.scss';
 import 'bootstrap';
 import initView from './scripts/modules/init-view';
 
-initView();
+initView(0);

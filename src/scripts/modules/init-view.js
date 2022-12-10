@@ -2,13 +2,13 @@ import initTaskList from './init/task-list';
 import initTaskView from './init/task-view';
 import { taskService } from './services/task-service';
 
-function initView() {
+function initView(taskIndex) {
   const tasks = taskService.getTasks();
 
-  initTaskList(tasks);
+  initTaskList(tasks, taskIndex);
 
   tasks.forEach((task, index) => {
-    if (index === 0) {
+    if (index === taskIndex) {
       initTaskView(index);
     }
   });

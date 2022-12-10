@@ -12,7 +12,7 @@ export const subTaskListeners = {
 
     subTask.setDone(!subTask.done);
     subTaskService.updateSubTask(index, subTask);
-    initView();
+    initView(subTaskService.getCurrentTaskIndex());
   },
   updateTitle: (index, newTitle) => {
     const subTask = subTaskService.getSubTask(index);
@@ -31,6 +31,6 @@ export const subTaskListeners = {
 
     subTask.setTime(newHours);
     subTaskService.updateSubTask(index, subTask);
-    initView();
+    initView(subTaskService.getCurrentTaskIndex());
   },
 };

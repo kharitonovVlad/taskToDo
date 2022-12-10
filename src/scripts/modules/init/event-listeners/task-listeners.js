@@ -4,7 +4,7 @@ import initView from '../../init-view';
 export const taskListeners = {
   remove: (index) => {
     taskService.removeTask(index);
-    initView();
+    initView(index);
   },
   done: (index) => {
     const task = taskService.getTask(index);
@@ -12,7 +12,7 @@ export const taskListeners = {
 
     task.setDone(isDone);
     taskService.updateTask(task);
-    initView();
+    initView(index);
   },
   updateTitle: (index, newTitle) => {
     const task = taskService.getTask(index);

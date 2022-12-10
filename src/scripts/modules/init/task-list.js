@@ -2,7 +2,7 @@ import createTask from './event-listeners/create-task';
 import { idService } from '../services/id-service';
 import { clickListenersService } from '../services/click-listeners-service';
 
-function initTaskList(tasks) {
+function initTaskList(tasks, currentIndex) {
   const menu = document.querySelector('.menu');
 
   menu.innerHTML = '';
@@ -38,7 +38,7 @@ function initTaskList(tasks) {
       <button
         type='button'
         class='list-group-item list-group-item-action ${
-          index === 0 ? 'active' : ''
+          index === currentIndex ? 'active' : ''
         }'
       >
         ${task.title}

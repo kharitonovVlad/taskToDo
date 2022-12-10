@@ -4,6 +4,9 @@ let subTasks = [];
 let taskIndex;
 
 export const subTaskService = {
+  getCurrentTaskIndex: () => {
+    return taskIndex;
+  },
   getSubTasks: (taskIdx) => {
     taskIndex = taskIdx !== null ? taskIdx : taskIndex;
     subTasks = taskService.getSubTasks(taskIndex);
