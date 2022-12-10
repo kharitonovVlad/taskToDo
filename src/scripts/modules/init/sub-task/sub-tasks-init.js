@@ -1,6 +1,7 @@
 import { subTaskService } from '../../services/sub-task-service';
 import { subTaskListeners } from '../event-listeners/sub-task-listeners';
 import { taskService } from '../../services/task-service';
+import { ModalService } from '../../services/modal-service';
 
 function subTasksInit(index = null) {
   const subTasks = subTaskService.getSubTasks(index);
@@ -86,7 +87,13 @@ function subTasksInit(index = null) {
     document
       .querySelector(`#removeSubTaskButton-${index}`)
       .addEventListener('click', () => {
-        subTaskListeners.remove(index);
+        ModalService.createRemoveConfirm({
+          confirmCallback: () => {
+            subTaskListeners.remove(index);
+          },
+          header: 'Подтвердите действие',
+          message: 'Вы действительно хотите удалить подзадачу?',
+        });
       });
     document
       .querySelector(`#doneSubTaskButton-${index}`)
@@ -97,17 +104,17 @@ function subTasksInit(index = null) {
     document
       .querySelector(`#hoursInput-${index}`)
       .addEventListener('change', (event) => {
-        subTaskListeners.updateHours(index, event.target.value);
+        subTaskListeners.updateHours(index, event.target['value']);
       });
     document
       .querySelector(`#subNameInput-${index}`)
       .addEventListener('change', (event) => {
-        subTaskListeners.updateTitle(index, event.target.value);
+        subTaskListeners.updateTitle(index, event.target['value']);
       });
     document
       .querySelector(`#descriptionSubTaskTextArea-${index}`)
       .addEventListener('change', (event) => {
-        subTaskListeners.updateDescription(index, event.target.value);
+        subTaskListeners.updateDescription(index, event.target['value']);
       });
   });
 }

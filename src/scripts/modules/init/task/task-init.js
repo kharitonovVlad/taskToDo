@@ -1,5 +1,6 @@
 import { taskService } from '../../services/task-service';
 import { taskListeners } from '../event-listeners/task-listeners';
+import { ModalService } from '../../services/modal-service';
 
 function taskInit(index, content) {
   const task = taskService.getTask(index);
@@ -74,18 +75,26 @@ function taskInit(index, content) {
   );
 
   document.querySelector('#removeTaskButton').addEventListener('click', () => {
-    taskListeners.remove(index);
+    ModalService.createRemoveConfirm({
+      confirmCallback: () => {
+        taskListeners.remove(index);
+      },
+      header: 'Подтвердите действие',
+      message: 'Вы действительно хотите удалить задачу?',
+    });
   });
   document.querySelector('#doneTaskButton').addEventListener('click', () => {
     taskListeners.done(index);
   });
   document.querySelector('#nameInput').addEventListener('change', (event) => {
-    taskListeners.updateTitle(index, event.target.value);
+    const { value } = event.target;
+    taskListeners.updateTitle(index, value);
   });
   document
     .querySelector('#descriptionTextArea')
     .addEventListener('change', (event) => {
-      taskListeners.updateDescription(index, event.target.value);
+      const { value } = event.target;
+      taskListeners.updateDescription(index, value);
     });
 }
 
