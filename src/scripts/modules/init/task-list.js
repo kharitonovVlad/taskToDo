@@ -3,7 +3,7 @@ import { idService } from '../services/id-service';
 import { clickListenersService } from '../services/click-listeners-service';
 
 function getCreateTaskTemplate() {
-  return `<div class="input-group">
+  return `<div class="input-group" style='border-bottom: 1px solid rgba(0, 0, 0, 0.125);'>
             <input
               type="text"
               class="form-control"
@@ -23,7 +23,7 @@ function getTaskItemTemplate(task, index, currentIndex) {
         type='button'
         class='list-group-item list-group-item-action ${
           index === currentIndex ? 'active' : ''
-        }'
+        } task-item'
       >
         ${task.title}
         <span class='badge rounded-pill text-bg-light'>${task.time}</span>

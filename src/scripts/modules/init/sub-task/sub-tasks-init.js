@@ -2,6 +2,7 @@ import { subTaskService } from '../../services/sub-task-service';
 import { subTaskListeners } from '../event-listeners/sub-task-listeners';
 import { taskService } from '../../services/task-service';
 import { ModalService } from '../../services/modal-service';
+import emptyListTemplate from '../../templates/empty-list-template';
 
 function subTasksInit(index = null) {
   const subTasks = subTaskService.getSubTasks(index);
@@ -9,8 +10,9 @@ function subTasksInit(index = null) {
   const subTasksContainer = document.querySelector('#subTasksContainer');
   subTasksContainer.innerHTML = '';
   const subTaskList = [];
-  subTasks.forEach((subTask, index) => {
-    subTaskList.push(`
+  if (subTasks.length) {
+    subTasks.forEach((subTask, index) => {
+      subTaskList.push(`
           <div class="section-container position-relative">
             <span
               class="position-absolute top-0 start-100 translate-middle badge bg-${
@@ -59,8 +61,8 @@ function subTasksInit(index = null) {
                 <label for="subNameInput-${index}">Имя подзадачи</label>
               </div>
               <button class="btn btn-outline-success done" type="button" id="doneSubTaskButton-${index}" ${
-      currentTask.done ? 'disabled' : ''
-    }>
+        currentTask.done ? 'disabled' : ''
+      }>
                 <i class="bi bi-${
                   !subTask.done ? 'check2' : 'arrow-counterclockwise'
                 }"></i>
@@ -78,45 +80,51 @@ function subTasksInit(index = null) {
               </div>
             </div>
           </div>`);
-  });
+    });
 
-  subTasksContainer.insertAdjacentHTML('afterbegin', `<h4>Подзадачи</h4>`);
-  subTasksContainer.insertAdjacentHTML('beforeend', subTaskList.join(''));
+    subTasksContainer.insertAdjacentHTML('afterbegin', `<h4>Подзадачи</h4>`);
+    subTasksContainer.insertAdjacentHTML('beforeend', subTaskList.join(''));
 
-  subTasks.forEach((subTask, index) => {
-    document
-      .querySelector(`#removeSubTaskButton-${index}`)
-      .addEventListener('click', () => {
-        ModalService.createRemoveConfirm({
-          confirmCallback: () => {
-            subTaskListeners.remove(index);
-          },
-          header: 'Подтвердите действие',
-          message: 'Вы действительно хотите удалить подзадачу?',
+    subTasks.forEach((subTask, index) => {
+      document
+        .querySelector(`#removeSubTaskButton-${index}`)
+        .addEventListener('click', () => {
+          ModalService.createRemoveConfirm({
+            confirmCallback: () => {
+              subTaskListeners.remove(index);
+            },
+            header: 'Подтвердите действие',
+            message: 'Вы действительно хотите удалить подзадачу?',
+          });
         });
-      });
-    document
-      .querySelector(`#doneSubTaskButton-${index}`)
-      .addEventListener('click', () => {
-        subTaskListeners.done(index);
-      });
+      document
+        .querySelector(`#doneSubTaskButton-${index}`)
+        .addEventListener('click', () => {
+          subTaskListeners.done(index);
+        });
 
-    document
-      .querySelector(`#hoursInput-${index}`)
-      .addEventListener('change', (event) => {
-        subTaskListeners.updateHours(index, event.target['value']);
-      });
-    document
-      .querySelector(`#subNameInput-${index}`)
-      .addEventListener('change', (event) => {
-        subTaskListeners.updateTitle(index, event.target['value']);
-      });
-    document
-      .querySelector(`#descriptionSubTaskTextArea-${index}`)
-      .addEventListener('change', (event) => {
-        subTaskListeners.updateDescription(index, event.target['value']);
-      });
-  });
+      document
+        .querySelector(`#hoursInput-${index}`)
+        .addEventListener('change', (event) => {
+          subTaskListeners.updateHours(index, event.target['value']);
+        });
+      document
+        .querySelector(`#subNameInput-${index}`)
+        .addEventListener('change', (event) => {
+          subTaskListeners.updateTitle(index, event.target['value']);
+        });
+      document
+        .querySelector(`#descriptionSubTaskTextArea-${index}`)
+        .addEventListener('change', (event) => {
+          subTaskListeners.updateDescription(index, event.target['value']);
+        });
+    });
+  } else {
+    subTasksContainer.insertAdjacentHTML(
+      'afterbegin',
+      emptyListTemplate('Список подзадач пуст', 10)
+    );
+  }
 }
 
 export default subTasksInit;

@@ -11,7 +11,7 @@ function addNewTaskToList(newTask) {
     'afterbegin',
     `<button
         type='button'
-        class='list-group-item list-group-item-action'
+        class='list-group-item list-group-item-action task-item'
       >
         ${newTask.title}
         <span class='badge rounded-pill text-bg-light'>${newTask.time}</span>

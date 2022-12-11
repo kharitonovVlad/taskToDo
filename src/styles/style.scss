@@ -50,6 +50,10 @@ h6 {
       }
     }
 
+    .task-item:first-child {
+      border-top: none;
+    }
+
     .tasks-list {
       list-style: none;
 
