@@ -21,6 +21,9 @@ function addNewTaskToList(newTask) {
 
 function createTask() {
   const createTaskInput = document.querySelector('#createTaskInput');
+  if (!createTaskInput.value.trim()) {
+    return;
+  }
   const newTask = new Task(createTaskInput.value);
   createTaskInput.value = '';
 

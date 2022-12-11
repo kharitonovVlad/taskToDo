@@ -55,6 +55,13 @@ function initTaskList(tasks, currentIndex) {
   document
     .querySelector('#createTaskButton')
     .addEventListener('click', createTask);
+  document
+    .querySelector('#createTaskInput')
+    .addEventListener('keydown', (event) => {
+      if (event.code === 'Enter') {
+        createTask();
+      }
+    });
 
   idService.setForTasks();
   clickListenersService.setForTasks();
