@@ -50,7 +50,7 @@ export const taskService = {
   getTasks: () => {
     tasks = JSON.parse(localStorage.getItem(connectionString));
 
-    if (tasks.length) {
+    if (tasks && tasks.length) {
       tasks = convertTasks(tasks);
     } else {
       tasks = [];

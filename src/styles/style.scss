@@ -267,3 +267,60 @@ h6 {
     }
   }
 }
+
+@media (max-width: 400px) {
+  .app-container {
+    flex-direction: column;
+    min-height: 100%;
+
+    .menu {
+      width: 100%;
+      border: none;
+    }
+
+    .content {
+      width: 100%;
+      margin: 24px 0 0;
+
+      h2,
+      h4 {
+        margin-left: 20px;
+      }
+
+      .section-container {
+        margin: 24px 20px;
+
+        .badge {
+          left: 90% !important;
+        }
+
+        .task-name,
+        .sub-name {
+          flex-direction: column;
+          gap: 12px;
+
+          .middle-container {
+            .hours {
+              width: 100%;
+            }
+          }
+
+          .bottom-container {
+            display: flex;
+            gap: 12px;
+
+            button {
+              width: 100%;
+            }
+          }
+
+          .description {
+            .collapse {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
