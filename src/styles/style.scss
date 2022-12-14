@@ -102,6 +102,13 @@ h6 {
     width: 75%;
     margin-top: 10px;
 
+    .btn-outline-warning {
+      &:hover {
+        color: #ffffff !important;
+        background-color: var(--bs-btn-active-bg) !important;
+      }
+    }
+
     i {
       font-size: 21px;
     }
@@ -269,6 +276,42 @@ h6 {
 }
 
 @media (max-width: 400px) {
+  .btn-outline-secondary {
+    &:hover {
+      color: unset !important;
+      background-color: unset !important;
+    }
+
+    &:active {
+      color: var(--bs-btn-active-color) !important;
+      background-color: var(--bs-btn-active-bg) !important;
+    }
+  }
+
+  .btn-outline-warning {
+    &:hover {
+      color: #ffc107 !important;
+      background-color: unset !important;
+    }
+
+    &:active {
+      color: #ffffff !important;
+      background-color: var(--bs-btn-active-bg) !important;
+    }
+  }
+
+  .btn-outline-success {
+    &:hover {
+      color: #198754 !important;
+      background-color: unset !important;
+    }
+
+    &:active {
+      color: #ffffff !important;
+      background-color: var(--bs-btn-active-bg) !important;
+    }
+  }
+
   .app-container {
     flex-direction: column;
     min-height: 100%;
