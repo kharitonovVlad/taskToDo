@@ -1,44 +1,66 @@
 const db = require("../db");
+const defaultErrorMessage =
+  "Произошла ошибка на сервере. Проверьте введенные данные";
 
 class TaskController {
   async createTask(req, res) {
-    const { title } = req.body;
-    const newTask = await db.query(
-      "INSERT INTO task (title, is_done) VALUES ($1, $2) RETURNING *",
-      [title, false]
-    );
+    try {
+      const { title } = req.body;
+      const newTask = await db.query(
+        "INSERT INTO task (title,description, is_done) VALUES ($1, $2, $3) RETURNING *",
+        [title, "", false]
+      );
 
-    res.json(newTask.rows[0]);
+      res.json(newTask.rows[0]);
+    } catch (err) {
+      res.status(500).json(defaultErrorMessage);
+    }
   }
 
   async getTasks(req, res) {
-    const tasks = await db.query("SELECT * FROM task");
+    try {
+      const tasks = await db.query("SELECT * FROM task");
 
-    res.json(tasks.rows);
+      res.json(tasks.rows);
+    } catch (err) {
+      res.status(500).json(defaultErrorMessage);
+    }
   }
 
   async getOneTask(req, res) {
-    const id = req.params.id;
-    const task = await db.query("SELECT * FROM task WHERE id = $1", [id]);
+    try {
+      const id = req.params.id;
+      const task = await db.query("SELECT * FROM task WHERE id = $1", [id]);
 
-    res.json(task.rows[0]);
+      res.json(task.rows[0]);
+    } catch (err) {
+      res.status(500).json(defaultErrorMessage);
+    }
   }
 
   async updateTask(req, res) {
-    const { id, title, description, isDone } = req.body;
-    const updatedTask = await db.query(
-      "UPDATE task SET title=$1, description=$2, is_done=$3 WHERE id=$4 RETURNING *",
-      [title, description, isDone, id]
-    );
+    try {
+      const { id, title, description, isDone } = req.body;
+      const updatedTask = await db.query(
+        "UPDATE task SET title=$1, description=$2, is_done=$3 WHERE id=$4 RETURNING *",
+        [title, description, isDone, id]
+      );
 
-    res.json(updatedTask.rows[0]);
+      res.json(updatedTask.rows[0]);
+    } catch (err) {
+      res.status(500).json(defaultErrorMessage);
+    }
   }
 
   async deleteTask(req, res) {
-    const id = req.params.id;
-    await db.query("DELETE FROM task WHERE id=$1", [id]);
+    try {
+      const id = req.params.id;
+      await db.query("DELETE FROM task WHERE id=$1", [id]);
 
-    res.json();
+      res.json();
+    } catch (err) {
+      res.status(500).json(defaultErrorMessage);
+    }
   }
 }
 

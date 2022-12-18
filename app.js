@@ -6,8 +6,7 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
-app.use("/api", taskRouter);
-app.use("/api", subTaskRouter);
+app.use("/api", taskRouter, subTaskRouter);
 
 app.use(express.static(path.resolve(__dirname, "client", "dist")));
 
