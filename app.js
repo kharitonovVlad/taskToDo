@@ -1,6 +1,11 @@
 const express = require("express");
 const path = require("path");
+const taskRouter = require("./routers/task.route");
+const PORT = process.env.PORT || 8080;
 const app = express();
+
+app.use(express.json());
+app.use("/api", taskRouter);
 
 app.use(express.static(path.resolve(__dirname, "client", "dist")));
 
@@ -8,6 +13,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
 });
 
-app.listen(3000, () => {
-  console.log("Server has been started on port 3000...");
+app.listen(PORT, () => {
+  console.log(`Server has been started on port ${PORT}...`);
 });
