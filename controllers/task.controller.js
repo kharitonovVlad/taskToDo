@@ -21,6 +21,18 @@ class TaskController {
     try {
       const tasks = await db.query("SELECT * FROM task");
 
+      await Promise.all(
+        tasks.rows.map(async (task) => {
+          const subTasks = await db.query(
+            "SELECT * FROM sub_task WHERE task_id=$1",
+            [task.id]
+          );
+          task.subTasks = subTasks.rows;
+
+          return task;
+        })
+      );
+
       res.json(tasks.rows);
     } catch (err) {
       res.status(500).json(defaultErrorMessage);

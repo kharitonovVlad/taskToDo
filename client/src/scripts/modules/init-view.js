@@ -3,11 +3,11 @@ import initTaskView from './init/task-view';
 import { taskService } from './services/task-service';
 import emptyListTemplate from './templates/empty-list-template';
 
-function initView(taskIndex) {
+async function initView(taskIndex) {
   const content = document.querySelector('.content');
   content.innerHTML = '';
 
-  const tasks = taskService.getTasks();
+  const tasks = await taskService.getTasks();
 
   initTaskList(tasks, taskIndex);
 

@@ -48,15 +48,33 @@ function convertTasks(tasks) {
 
 export const taskService = {
   getTasks: () => {
-    tasks = JSON.parse(localStorage.getItem(connectionString));
+    return fetch('http://localhost:8080/api/task', {
+      method: 'GET',
+    })
+      .then(
+        (res) => res.json(),
+        (err) => {
+          console.log(err);
+          tasks = JSON.parse(localStorage.getItem(connectionString));
+          if (tasks && tasks.length) {
+            tasks = convertTasks(tasks);
+          } else {
+            tasks = [];
+          }
 
-    if (tasks && tasks.length) {
-      tasks = convertTasks(tasks);
-    } else {
-      tasks = [];
-    }
+          return tasks;
+        }
+      )
+      .then((res) => {
+        tasks = res;
+        if (tasks && tasks.length) {
+          tasks = convertTasks(tasks);
+        } else {
+          tasks = [];
+        }
 
-    return tasks;
+        return tasks;
+      });
   },
   saveTasks: () => {
     localStorage.setItem(connectionString, JSON.stringify(tasks));
