@@ -24,15 +24,16 @@ function createTask() {
   if (!createTaskInput.value.trim()) {
     return;
   }
-  const newTask = new Task(createTaskInput.value);
+  const newTask = new Task(null, createTaskInput.value);
   createTaskInput.value = '';
 
-  addNewTaskToList(newTask);
-  taskService.addTask(newTask);
-  idService.setForTasks();
-  clickListenersService.setForTasks();
+  taskService.addTask(newTask).then(() => {
+    addNewTaskToList(newTask);
+    idService.setForTasks();
+    clickListenersService.setForTasks();
 
-  onTaskClick(0);
+    onTaskClick(0);
+  });
 }
 
 export default createTask;

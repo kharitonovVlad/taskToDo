@@ -24,6 +24,7 @@ function convertTasks(tasks) {
       });
 
       convertedTask = new Task(
+        task.id,
         task.title,
         convertedSubs,
         task.time,
@@ -32,6 +33,7 @@ function convertTasks(tasks) {
       );
     } else {
       convertedTask = new Task(
+        task.id,
         task.title,
         convertedSubs,
         task.time,
@@ -72,6 +74,7 @@ export const taskService = {
         } else {
           tasks = [];
         }
+        taskService.saveTasks();
 
         return tasks;
       });
@@ -80,21 +83,47 @@ export const taskService = {
     localStorage.setItem(connectionString, JSON.stringify(tasks));
   },
   addTask: (newTask) => {
-    tasks.unshift(newTask);
-    taskService.saveTasks();
+    return fetch('http://localhost:8080/api/task', {
+      method: 'POST',
+      body: JSON.stringify(newTask),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        tasks.unshift(newTask);
+        taskService.saveTasks();
+
+        return res;
+      });
   },
   getTask: (taskIndex) => {
     return tasks[taskIndex];
   },
-  removeTask: (taskIndex) => {
-    tasks = tasks.filter((task, index) => {
-      return index !== taskIndex;
+  removeTask: (taskIndex, taskId) => {
+    return fetch(`http://localhost:8080/api/task/${taskId}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      tasks = tasks.filter((task, index) => {
+        return index !== taskIndex;
+      });
+      taskService.saveTasks();
+
+      return res;
     });
-    taskService.saveTasks();
   },
   updateTask: (index, task) => {
-    tasks[index] = task;
-    taskService.saveTasks();
+    return fetch('http://localhost:8080/api/task', {
+      method: 'PUT',
+      body: JSON.stringify(task),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        tasks[index] = task;
+        taskService.saveTasks();
+
+        return res;
+      });
   },
   getSubTasks: (index) => {
     return tasks[index].subTasks;

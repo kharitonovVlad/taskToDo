@@ -155,7 +155,7 @@ function taskInit(index, content) {
   document.querySelector('#removeTaskButton').addEventListener('click', () => {
     ModalService.createRemoveConfirm({
       confirmCallback: () => {
-        taskListeners.remove(index);
+        taskListeners.remove(index, task.id);
       },
       header: 'Подтвердите действие',
       message: 'Вы действительно хотите удалить задачу?',

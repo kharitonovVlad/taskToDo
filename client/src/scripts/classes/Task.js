@@ -1,5 +1,6 @@
 class Task {
-  constructor(title, subTasks, time, done, desc) {
+  constructor(id, title, subTasks, time, done, desc) {
+    this.id = id;
     this.title = title;
     this.subTasks = subTasks ? subTasks : [];
     this.time = time ? time : 0;
