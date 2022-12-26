@@ -16,6 +16,8 @@ function convertTasks(tasks) {
       task.subTasks.forEach((sub) => {
         let convertedSub = new SubTask(
           sub.title,
+          sub.taskId,
+          sub.id,
           sub.time,
           sub.done,
           sub.description

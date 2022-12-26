@@ -1,9 +1,11 @@
 class SubTask {
-  constructor(title, time, done, description) {
+  constructor(title, taskId, id, time, done, description) {
     this.title = title;
     this.time = time ? time : 0;
     this.done = done ? done : false;
     this.description = description ? description : '';
+    this.id = id;
+    this.taskId = taskId;
   }
 
   setTitle(title) {

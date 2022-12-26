@@ -4,12 +4,15 @@ import subTasksInit from '../sub-task/sub-tasks-init';
 
 function createSubTask() {
   const createSubTaskInput = document.querySelector('#createSubTaskInput');
-  const newSubTask = new SubTask(createSubTaskInput.value);
+  const newSubTask = new SubTask(
+    createSubTaskInput.value,
+    subTaskService.getCurrentTaskId()
+  );
 
   createSubTaskInput.value = '';
-  subTaskService.addSubTask(newSubTask);
-
-  subTasksInit();
+  subTaskService.addSubTask(newSubTask).then(() => {
+    subTasksInit();
+  });
 }
 
 export default createSubTask;

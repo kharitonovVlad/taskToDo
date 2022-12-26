@@ -6,9 +6,10 @@ class SubTaskController {
   async createSubTask(req, res) {
     try {
       const { title, taskId } = req.body;
+      const createdDate = new Date();
       const newSubTask = await db.query(
-        "INSERT INTO sub_task (title, description, hours, is_done, task_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-        [title, "", 0, false, taskId]
+        "INSERT INTO sub_task (title, description, time, done, task_id, created_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+        [title, "", 0, false, taskId, createdDate]
       );
 
       res.status(200).json(newSubTask.rows[0]);
@@ -46,10 +47,10 @@ class SubTaskController {
 
   async updateSubTask(req, res) {
     try {
-      const { id, title, description, hours, isDone } = req.body;
+      const { id, title, description, time, done } = req.body;
       const updatedSubTask = await db.query(
-        "UPDATE sub_task SET title=$1, description=$2, hours=$3, is_done=$4 WHERE id=$5 RETURNING *",
-        [title, description, hours, isDone, id]
+        "UPDATE sub_task SET title=$1, description=$2, time=$3, done=$4 WHERE id=$5 RETURNING *",
+        [title, description, time, done, id]
       );
 
       res.json(updatedSubTask.rows[0]);

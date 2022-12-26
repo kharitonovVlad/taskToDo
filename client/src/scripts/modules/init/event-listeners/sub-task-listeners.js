@@ -4,15 +4,17 @@ import initView from '../../init-view';
 
 export const subTaskListeners = {
   remove: (index) => {
-    subTaskService.removeSubTask(index);
-    subTasksInit();
+    subTaskService.removeSubTask(index).then(() => {
+      subTasksInit();
+    });
   },
   done: (index) => {
     const subTask = subTaskService.getSubTask(index);
 
     subTask.setDone(!subTask.done);
-    subTaskService.updateSubTask(index, subTask);
-    initView(subTaskService.getCurrentTaskIndex());
+    subTaskService.updateSubTask(index, subTask).then(() => {
+      initView(subTaskService.getCurrentTaskIndex());
+    });
   },
   updateTitle: (index, newTitle) => {
     const subTask = subTaskService.getSubTask(index);
@@ -30,7 +32,8 @@ export const subTaskListeners = {
     const subTask = subTaskService.getSubTask(index);
 
     subTask.setTime(newHours);
-    subTaskService.updateSubTask(index, subTask);
-    initView(subTaskService.getCurrentTaskIndex());
+    subTaskService.updateSubTask(index, subTask).then(() => {
+      initView(subTaskService.getCurrentTaskIndex());
+    });
   },
 };

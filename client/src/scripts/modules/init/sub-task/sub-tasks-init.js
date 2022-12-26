@@ -7,6 +7,7 @@ import emptyListTemplate from '../../templates/empty-list-template';
 function subTasksInit(index = null) {
   const subTasks = subTaskService.getSubTasks(index);
   const currentTask = taskService.getTask(subTaskService.getCurrentTaskIndex());
+  subTaskService.setCurrentTaskId(currentTask.id);
   const subTasksContainer = document.querySelector('#subTasksContainer');
   subTasksContainer.innerHTML = '';
   const subTaskList = [];

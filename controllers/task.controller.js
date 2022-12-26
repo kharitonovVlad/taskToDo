@@ -27,7 +27,7 @@ class TaskController {
       await Promise.all(
         tasks.rows.map(async (task) => {
           const subTasks = await db.query(
-            "SELECT * FROM sub_task WHERE task_id=$1",
+            "SELECT * FROM sub_task WHERE task_id=$1 ORDER BY created_date DESC",
             [task.id]
           );
           task.subTasks = subTasks.rows;
